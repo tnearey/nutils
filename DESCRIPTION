@@ -1,0 +1,14 @@
+Package: nutils
+Type: Package
+Title: Utilities for Debugging Mostly
+Version: 0.1.0
+Author: T.M. Nearey
+Maintainer: The package maintainer <noone@noewhere.net>
+Description: Provides simple utilities for early debugging and one-off scripts.
+    Use four spaces when indenting paragraphs within the Description.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Suggests: 
+    testthat
