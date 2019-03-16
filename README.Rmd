@@ -17,42 +17,38 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The package nutils is to  provide utilities I found useful particularly in early debugging scaffolding.
-Some simple functions 
-catln  -- just cat with a "\n" appended, analagous to python3 print(). Name inspired by ancient Pascal writeln.
-showvars -- show variable names and print its contents.
+The package *nutils* contains two kinds of utilities.
 
+1. Those that I found useful particularly in early debugging 'scaffolding'
+
+    * `catln`  -- just cat with a `newline` appended, analogous to python3 `print()`. Name inspired by venerable Pascal `writeln`.
+    
+    * `showvars` -- show variable names and print its type and contents.
+
+2. A couple of functions that interface with the mac 
+    * macopen - open a Mac folder or file in Finder or in the file's default application.
+    
+    * macedit - open a text file in Mac TextEdit app.
 
 
 ## Installation
 
-You CAN'T install the released version of nutils from [CRAN](https://CRAN.R-project.org) with:
+You can install the latest commit from [GITHUB](https://github.com/) with:
+`devtools:install_github("tnearey/nutils")`
 
-``` r
-install.packages("nutils")
-```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
 library(nutils)
-## basic example code
+catln('a',"the banana is in the cupboard")
+x=1
+y="Why not"
+lst=list('x'=x,'y'=y,fred=data.frame(x=x,y=y,z="Not me"))
+showvars(x,y,lst)
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
 
-```{r cars}
-summary(cars)
-```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
 
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!

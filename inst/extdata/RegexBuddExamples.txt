@@ -1,0 +1,22 @@
+RegexBuddyExamples (the easy cases)
+
+Floating point regular expression
+ [-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?
+
+Email address
+^[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,}$
+
+IP Addresses
+\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b 
+
+yymmdd dates
+^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$
+
+Visa:
+ ^4[0-9]{12}(?:[0-9]{3})?$ All 
+
+MasterCard:
+^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$ 
+
+American Express:
+ ^3[47][0-9]{13}$ 

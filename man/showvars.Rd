@@ -2,7 +2,7 @@
 % Please edit documentation in R/nutils.R
 \name{showvars}
 \alias{showvars}
-\title{Displays names and values of atomic variables (for texty debugging)}
+\title{Display names, types and values of variables (for quick wordy debugging)}
 \usage{
 showvars(...)
 }
@@ -13,5 +13,10 @@ showvars(...)
 N/A (lists variables to console)
 }
 \description{
-Displays names and values of atomic variables (for texty debugging)
+Display names, types and values of variables (for quick wordy debugging)
+}
+\examples{
+ x=1; y=2; cc='banana'
+showvars(x,y,cc)
+
 }

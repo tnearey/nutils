@@ -2,7 +2,7 @@
 % Please edit documentation in R/nutils.R
 \name{isQuote}
 \alias{isQuote}
-\title{Determine if character is a quote ('"`)}
+\title{Determine if character is a quote (', " , `)}
 \usage{
 isQuote(ch)
 }
@@ -13,5 +13,5 @@ isQuote(ch)
 --- boolean indicating whether ch is a quote char.
 }
 \description{
-Determine if character is a quote ('"`)
+Determine if character is a quote (', " , `)
 }

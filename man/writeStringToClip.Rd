@@ -7,10 +7,7 @@
 writeStringToClip(inStr)
 }
 \arguments{
-\item{inStr}{(1)  -- string to copy to clipboard (uses writeChar on mac)}
-}
-\value{
---- NA
+\item{inStr}{string to copy to clipboard (uses writeChar on mac)}
 }
 \description{
 Write the string in inStr to clipboard

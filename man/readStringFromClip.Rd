@@ -2,19 +2,27 @@
 % Please edit documentation in R/nutils.R
 \name{readStringFromClip}
 \alias{readStringFromClip}
-\title{ReadStringFromClip}
+\title{Read a string (max 5000 char in mac) from clipboard}
 \usage{
-readStringFromClip()
+readStringFromClip(testText = NULL)
 }
 \arguments{
-\item{None}{}
+\item{testText}{a string/character array usually missing. It allows test text to be put in
+and mostly gets around a roxygen2 issue I couldn't figure.}
 }
 \value{
--- a string
+a string
 }
 \description{
 Read a string (max 5000 char in mac) from clipboard
 }
 \details{
-Uses writeChar on mac. See e.g. http://stackoverflow.com/a/13445458/1795127
+Uses \code{writeChar()} on mac. See e.g. \url{http://stackoverflow.com/a/13445458/1795127}
+}
+\examples{
+# Select someting and copy it to clipboard
+# Then input a line
+readline('Type cr when ready')
+print(readStringFromClip())
+
 }

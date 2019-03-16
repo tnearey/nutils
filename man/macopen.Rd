@@ -2,16 +2,16 @@
 % Please edit documentation in R/nutils.R
 \name{macopen}
 \alias{macopen}
-\title{Open directory in Mac OS finder, by default current working directory}
+\title{Open a Mac OS file or folder by it's default application.}
 \usage{
 macopen(dirOrFileName = getwd())
 }
 \arguments{
-\item{dirOrFileName}{(1) = getwd()   path to folder to open in mac os}
+\item{dirOrFileName}{path to folder to open in mac os; default `getwd()`}
 }
 \value{
-NONE : If argument is a directory
+Null If argument is a directory, opens it in finder; else  opens it with default application.
 }
 \description{
-Open directory in Mac OS finder, by default current working directory
+Open directory in Mac OS finder, by default current working directory. Or open a file by it's default application.
 }

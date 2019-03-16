@@ -7,11 +7,16 @@
 macedit(fname)
 }
 \arguments{
-\item{fname}{(1) -- fullpath name of file to open}
+\item{fname}{full path name of file to open}
 }
 \value{
-N/A .. opens file in Text Edit app
+N/A .. (Opens file in Text Edit app.)
 }
 \description{
 Open a file in Mac OS text editor
+}
+\examples{
+# not run
+txtFile=system.file("extdata","myTextFile.txt",package='nutils')
+macedit(txtFile)
 }

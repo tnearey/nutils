@@ -2,16 +2,21 @@
 % Please edit documentation in R/nutils.R
 \name{catln}
 \alias{catln}
-\title{catln -- cat with newline at end}
+\title{catln -- cat with newline at end (analogous to Pascal \code{writeln()})}
 \usage{
 catln(...)
 }
 \arguments{
-\item{...}{(1)  -- args to pass to cat}
+\item{...}{(1)  -- arguments to pass to cat}
 }
 \value{
 N/A
 }
 \description{
-catln -- cat with newline at end
+catln -- cat with newline at end (analogous to Pascal \code{writeln()})
+}
+\examples{
+x=1; y=2; cc='banana'
+catln(x,y,cc)
+
 }

@@ -2,12 +2,16 @@
 # Part of codeGenToolsR package
 
 #--- Utility functions catln(), macfinder
-#' catln -- cat with newline at end
+#' catln -- cat with newline at end (analogous to Pascal \code{writeln()})
 #'
-#' @param ... (1)  -- args to pass to cat
+#' @param ... (1)  -- arguments to pass to cat
 #'
 #' @return N/A
 #' @export
+#' @examples
+#' x=1; y=2; cc='banana'
+#' catln(x,y,cc)
+#'
 catln = function(...){
   #   print(paste("class", class(x)))
   cat(...,"\n")
@@ -39,27 +43,29 @@ dtof <- data.frame(x = stats::rnorm(n),
 
 #--------------macopen --------------
 # macopen -- issue open command
-#
-#' Open directory in Mac OS finder, by default current working directory
+#' Open a Mac OS file or folder by it's default application.
 #'
-#' @param dirOrFileName (1) = getwd()   path to folder to open in mac os
+#' Open directory in Mac OS finder, by default current working directory. Or open a file by it's default application.
 #'
-#' @return  NONE : If argument is a directory
-#' @export
 
+#' @param dirOrFileName  path to folder to open in mac os; default `getwd()`
+#'
+#' @return  Null If argument is a directory, opens it in finder; else  opens it with default application.
+#' @export
+#' @examples
+#' ## not run
+#' txtFile=system.file("extdata","myTextFile.txt",package='nutils')
+#' macopen(txtFile)
+#'
+#' rFile=system.file("extdata","myRFile.R",package='nutils')
+#' macopen('rFile)
+#'
 macopen = function(dirOrFileName=getwd()) {
-  #' macopen = function(dirOrFileName=getwd())
-  #' Open directory in Mac OS finder, by default current working directory.
-  #' Or open a file by it's default application.
-  #' Args:
-  #    1) dirOrFileName=getwd() --
-  #' Returns:
-  #  None
+
   # Copyright (c) T M Nearey 2015
   # Version 1.0.0     Sat May  9 14:25:30 2015
-  # ------- End internal doc ----------------
-  # openWorkingDirectory ----s
-  if (Sys.info()["sysname"]!="Darwin"){
+
+      if (Sys.info()["sysname"]!="Darwin"){
     catln("Not Darwin can't open ",dirOrFileName)
   } else{
       tpath=path.expand(dirOrFileName)
@@ -71,30 +77,34 @@ macopen = function(dirOrFileName=getwd()) {
 #--------------macedit --------------
 #' Open a file in Mac OS text editor
 #'
-#' @param fname (1) -- fullpath name of file to open
-#' @return  N/A .. opens file in Text Edit app
+#' @param fname full path name of file to open
+#' @return  N/A .. (Opens file in Text Edit app.)
 #' @export
-#--------- End roxygen ------------------
-macedit = function(fname)
-{# openWorkingDirectory ----s
+#' @examples
+#' # not run
+#' txtFile=system.file("extdata","myTextFile.txt",package='nutils')
+#' macedit(txtFile)
+
+macedit = function(fname){
   if (Sys.info()["sysname"]!="Darwin"){
     catln("Not Darwin can't open ",fname)
   } else{
 
       tpath=path.expand(fname)
       # catln('tpath',tpath)
-
     open.cmd=paste("open -e ","\"",tpath,"\"",sep="")
     system(open.cmd)}
 }
 
 #---------- showvars ------------
-#--------- Start roxygen ------------------
-#' Displays names and values of atomic variables (for texty debugging)
+#' Display names, types and values of variables (for quick wordy debugging)
 #'
 #' @param  ... (1) -- list of variables
 #' @return  N/A (lists variables to console)
 #' @export
+#' @examples
+#'  x=1; y=2; cc='banana'
+#' showvars(x,y,cc)
 #'
 showvars <- function (...){
   # Display names of variables and their contents
@@ -109,16 +119,23 @@ showvars <- function (...){
     print(tval)
   }
 }
-#' ReadStringFromClip
-#'
+
 #' Read a string (max 5000 char in mac) from clipboard
-#' @param  None
-#' @return -- a string
+#' @param testText  a string/character array usually missing. It allows test text to be put in
+#'     and mostly gets around a roxygen2 issue I couldn't figure.
+#' @return   a string
 #' @details
-#' Uses writeChar on mac. See e.g. http://stackoverflow.com/a/13445458/1795127
+#' Uses \code{writeChar()} on mac. See e.g. \url{http://stackoverflow.com/a/13445458/1795127}
 #' @export
-readStringFromClip<- function(){
+#' @examples
+#' # Select someting and copy it to clipboard
+#' # Then input a line
+#' readline('Type cr when ready')
+#' print(readStringFromClip())
+#'
+readStringFromClip <- function(testText=NULL){
   # http://stackoverflow.com/a/13445458/1795127 and other sources
+    if  (!is.null(testText)) return(paste(testText))
   if (Sys.info()['sysname']=="Darwin"){
     clip <- pipe("pbpaste")
     outStr <- readChar(clip,5000)
@@ -131,8 +148,8 @@ readStringFromClip<- function(){
 }
 #---------- writeStringToClip ------------
 #' Write the string in inStr to clipboard
-#' @param inStr (1)  -- string to copy to clipboard (uses writeChar on mac)
-#' @return --- NA
+#' @param inStr string to copy to clipboard (uses writeChar on mac)
+#' @return  NULL
 #' @export
 writeStringToClip <- function (inStr){
   # http://stackoverflow.com/a/13445458/1795127
@@ -146,10 +163,8 @@ writeStringToClip <- function (inStr){
   }
 }
 
-#   replace with require pyrex eventually
-#http://stackoverflow.com/questions/14547069/how-to-write-from-r-to-the-clipboard-on-a-mac
-#--------- Start roxygen ------------------
-#' Determine if character is a quote ('"`)
+#---------- isQuote -----------------
+#' Determine if character is a quote (', " , `)
 #'
 #' @param ch (1)  -- character to test
 #' @return --- boolean indicating whether ch is a quote char.
@@ -160,26 +175,5 @@ isQuote=function(ch){
   quoteChars=c("'",'"','`')
   return( ch %in% quoteChars)
 }
-# parsetext(...)
-#'
-#' Abrreviates parse(text= paste0(.....)) useful for eval[.parent](parsetext(...)) ----
-#' parsetext parse a character vector
-#'
-#' @param ... -- text args to parse after pasting
-#' @param shouldShowText -- boolean showText or not
-#'
-#' @return An object of type "expression" see ?parse
-#' @export
-#'
-#' @examples
-#'  parsetext('print("This is a test")')
-#'
-parsetext <- function(...,shouldShowText=FALSE) {
-    warning('Hard to use.. need to take care of environments better just use parse(text=...)')
-  if (shouldShowText){
-    txt=paste0(...)
-    # catln('Text of commmand:',txt)
-  }
-  parse(text=paste0(...))
-}
+
 
